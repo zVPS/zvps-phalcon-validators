@@ -1,5 +1,7 @@
 <?php
 
+namespace zVPS\PhalconValidation;
+
 use Phalcon\Validation\Validator,
     Phalcon\Validation\ValidatorInterface,
     Phalcon\Validation\Message;

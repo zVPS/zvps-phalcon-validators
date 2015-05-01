@@ -1,19 +1,19 @@
 <?php
 
-namespace zVPS\Phalcon\Validation;
+namespace zVPS\PhalconValidation;
 
 use Phalcon\Validation\Validator,
     Phalcon\Validation\ValidatorInterface,
     Phalcon\Validation\Message;
 
-class AlphaNumericValidator extends Validator implements ValidatorInterface
+class AlphaValidator extends Validator implements ValidatorInterface
 {
 
     /**
      * Executes the validation
      * Available options:
      *  - allowWhiteSpace => true|false
-     * 
+     *
      * @param Phalcon\Validation $validator
      * @param string $attribute
      * @return boolean
@@ -24,7 +24,7 @@ class AlphaNumericValidator extends Validator implements ValidatorInterface
         $allowWhiteSpace = (bool) $this->getOption('allowWhiteSpace');
         $whiteSpace = $allowWhiteSpace ? '\s' : '';
         
-        $pattern = '/[^\p{L}\p{N}' . $whiteSpace . ']/u';
+        $pattern = '/[^\p{L}' . $whiteSpace . ']/u';
         $filtered = preg_replace($pattern, '', (string) $value);
         
         if(!is_string($value) || $value !== $filtered) {

@@ -6,8 +6,8 @@
         "php": "~5.3"
     },
     "autoload": {
-        "psr-0" : {
-            "zVPS\\Phalcon\\Validation" : "src"
+        "psr-4": {
+            "zVPS\\PhalconValidation\\": "src"
         }
     },
     "license": "GPL 3.0",

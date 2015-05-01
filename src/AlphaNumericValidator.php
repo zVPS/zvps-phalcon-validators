@@ -1,15 +1,19 @@
 <?php
 
+namespace zVPS\PhalconValidation;
+
 use Phalcon\Validation\Validator,
     Phalcon\Validation\ValidatorInterface,
     Phalcon\Validation\Message;
 
-class DigitsValidator extends Validator implements ValidatorInterface
+class AlphaNumericValidator extends Validator implements ValidatorInterface
 {
 
     /**
      * Executes the validation
-     *
+     * Available options:
+     *  - allowWhiteSpace => true|false
+     * 
      * @param Phalcon\Validation $validator
      * @param string $attribute
      * @return boolean
@@ -17,18 +21,13 @@ class DigitsValidator extends Validator implements ValidatorInterface
     public function validate(\Phalcon\Validation $validator, $attribute)
     {
         $value = $validator->getValue($attribute);
+        $allowWhiteSpace = (bool) $this->getOption('allowWhiteSpace');
+        $whiteSpace = $allowWhiteSpace ? '\s' : '';
         
-        if (extension_loaded('mbstring')) {
-            // Filter for the value with mbstring
-            $pattern = '/[^[:digit:]]/';
-        } else {
-            // Filter for the value without mbstring
-            $pattern = '/[\p{^N}]/';
-        }
-        
+        $pattern = '/[^\p{L}\p{N}' . $whiteSpace . ']/u';
         $filtered = preg_replace($pattern, '', (string) $value);
         
-        if((!is_int($value) && !is_float($value)) || $value !== $filtered) {
+        if(!is_string($value) || $value !== $filtered) {
             
             $message = $this->getOption('message');
             if (!$message) {
