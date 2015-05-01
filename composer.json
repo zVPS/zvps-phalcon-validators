@@ -1,0 +1,21 @@
+{
+    "name": "zvps/phalcon-validation",
+    "description": "Additional form and data validators extending the inbuilt phalcon interface.",
+    "require": {
+        "ext-phalcon": ">=1.3.4",
+        "php": "~5.3"
+    },
+    "autoload": {
+        "psr-0" : {
+            "zVPS\\Phalcon\\Validation" : "src"
+        }
+    },
+    "license": "GPL 3.0",
+    "authors": [
+        {
+            "name": "Kevin Andrews",
+            "email": "kevin@zvps.uk"
+        }
+    ],
+    "minimum-stability": "dev"
+}
