@@ -7,7 +7,7 @@
     },
     "autoload": {
         "psr-4": {
-            "zVPS\\PhalconValidation\\": "src/"
+            "zVPS\\PhalconValidation\\": "src/zVPS/PhalconValidation/"
         }
     },
     "license": "GPL 3.0",
