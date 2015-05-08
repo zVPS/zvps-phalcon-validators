@@ -2,9 +2,9 @@
 
 namespace zVPS\PhalconValidation;
 
-use Phalcon\Validation\Validator,
-    Phalcon\Validation\ValidatorInterface,
-    Phalcon\Validation\Message;
+use Phalcon\Validation\Validator;
+use Phalcon\Validation\ValidatorInterface;
+use Phalcon\Validation\Message;
 
 class DigitsValidator extends Validator implements ValidatorInterface
 {
@@ -24,7 +24,7 @@ class DigitsValidator extends Validator implements ValidatorInterface
             // Filter for the value with mbstring
             $pattern = '/[^[:digit:]]/';
         } else {
-            // Filter for the value without mbstring
+            // Filter for the value without mbstring using generic regex
             $pattern = '/[\p{^N}]/';
         }
         
@@ -34,10 +34,10 @@ class DigitsValidator extends Validator implements ValidatorInterface
             
             $message = $this->getOption('message');
             if (!$message) {
-                $message = 'Value contains non-alpha characters';
+                $message = 'Value contains non-numeric characters';
             }
 
-            $validator->appendMessage(new Message($message, $attribute, 'Alpha'));
+            $validator->appendMessage(new Message($message, $attribute, 'Digits'));
 
             return false;
         }

@@ -2,9 +2,9 @@
 
 namespace zVPS\PhalconValidation;
 
-use Phalcon\Validation\Validator,
-    Phalcon\Validation\ValidatorInterface,
-    Phalcon\Validation\Message;
+use Phalcon\Validation\Validator;
+use Phalcon\Validation\ValidatorInterface;
+use Phalcon\Validation\Message;
 
 class IpValidator extends Validator implements ValidatorInterface
 {

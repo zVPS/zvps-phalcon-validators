@@ -2,9 +2,9 @@
 
 namespace zVPS\PhalconValidation;
 
-use Phalcon\Validation\Validator,
-    Phalcon\Validation\ValidatorInterface,
-    Phalcon\Validation\Message;
+use Phalcon\Validation\Validator;
+use Phalcon\Validation\ValidatorInterface;
+use Phalcon\Validation\Message;
 
 class AlphaNumericValidator extends Validator implements ValidatorInterface
 {
@@ -31,10 +31,10 @@ class AlphaNumericValidator extends Validator implements ValidatorInterface
             
             $message = $this->getOption('message');
             if (!$message) {
-                $message = 'Value contains non-alpha characters';
+                $message = 'Value contains non-alpha or numeric characters';
             }
 
-            $validator->appendMessage(new Message($message, $attribute, 'Alpha'));
+            $validator->appendMessage(new Message($message, $attribute, 'AlphaNumeric'));
 
             return false;
         }
