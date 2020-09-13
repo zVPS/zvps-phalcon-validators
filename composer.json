@@ -2,8 +2,8 @@
     "name": "zvps/phalcon-validation",
     "description": "Additional form and data validators extending the inbuilt phalcon validate interface.",
     "require": {
-        "ext-phalcon": ">=1.3.4",
-        "php": ">=5.3"
+        "php": ">=7.2",
+        "ext-phalcon": "^4.0.6"
     },
     "autoload": {
         "psr-4": {

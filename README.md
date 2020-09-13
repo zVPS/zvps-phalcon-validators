@@ -5,7 +5,7 @@ Issues with the Alpha and Numeric validators have been fixed for UTF8 support:
 https://github.com/phalcon/cphalcon/issues/11386
 https://github.com/phalcon/cphalcon/issues/11374
 
-Additional form and data validators extending the inbuilt phalcon validate interface.
+However if you which to validate with whitespace or space characters then these validators may still come in handy.
 
 ## Example usage
 

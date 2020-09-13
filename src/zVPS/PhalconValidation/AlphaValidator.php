@@ -2,7 +2,7 @@
 
 namespace zVPS\PhalconValidation;
 
-use Phalcon\Validation\Validator;
+use Phalcon\Validation\AbstractValidator as Validator;
 use Phalcon\Validation\ValidatorInterface;
 use Phalcon\Validation\Message;
 
@@ -13,28 +13,29 @@ class AlphaValidator extends Validator implements ValidatorInterface
      * Executes the validation
      * Available options:
      *  - allowWhiteSpace => true|false
+     *  - allowSpace      => true|false
      *
-     * @param Phalcon\Validation $validator
-     * @param string $attribute
+     * @param Phalcon\Validation $validation
+     * @param string $field
      * @return boolean
      */
-    public function validate(\Phalcon\Validation $validator, $attribute)
+    public function validate(\Phalcon\Validation $validation, $field): bool
     {
-        $value = $validator->getValue($attribute);
-        $allowWhiteSpace = (bool) $this->getOption('allowWhiteSpace');
-        $whiteSpace = $allowWhiteSpace ? '\s' : '';
+        $value = $validation->getValue($field);
+        $whiteSpace = ((bool) $this->getOption('allowWhiteSpace')) ? '\s' : '';
+        $space      = ((bool) $this->getOption('allowSpace')) ? ' ' : '';
         
-        $pattern = '/[^\p{L}' . $whiteSpace . ']/u';
+        $pattern = '/[^\p{L}' . $whiteSpace . $space . ']/u';
         $filtered = preg_replace($pattern, '', (string) $value);
         
         if(!is_string($value) || $value !== $filtered) {
             
             $message = $this->getOption('message');
             if (!$message) {
-                $message = 'Value contains non-alpha characters';
+                $message = $field. ' contains non-alpha characters';
             }
 
-            $validator->appendMessage(new Message($message, $attribute, 'Alpha'));
+            $validation->appendMessage(new Message($message, $field, 'Alpha'));
 
             return false;
         }
