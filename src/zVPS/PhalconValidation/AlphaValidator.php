@@ -4,7 +4,7 @@ namespace zVPS\PhalconValidation;
 
 use Phalcon\Validation\AbstractValidator as Validator;
 use Phalcon\Validation\ValidatorInterface;
-use Phalcon\Validation\Message;
+use Phalcon\Messages\Message;
 
 class AlphaValidator extends Validator implements ValidatorInterface
 {
